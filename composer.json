@@ -23,9 +23,12 @@
         "symfony/dependency-injection": "^6.4 || ^7.0 || ^8.0",
         "symfony/framework-bundle": "^6.4 || ^7.0 || ^8.0",
         "symfony/http-kernel": "^6.4 || ^7.0 || ^8.0",
-        "symfony/twig-bundle": "^6.4 || ^7.0 || ^8.0"
+        "symfony/twig-bundle": "^6.4 || ^7.0 || ^8.0",
+      "ext-zip": "*"
     },
     "require-dev": {
+        "composer/composer": "^2.9",
+        "friendsofphp/php-cs-fixer": "^3.92",
         "matthiasnoback/symfony-config-test": "^6.1",
         "matthiasnoback/symfony-dependency-injection-test": "^6.1",
         "phpstan/extension-installer": "^1.4",
@@ -35,9 +38,8 @@
         "phpunit/phpunit": "^12.5",
         "rector/rector": "^2.3",
         "symfony/phpunit-bridge": "^8.0",
-        "vimeo/psalm": "^0.3.14",
         "symfony/var-dumper": "^6.4 || ^7.0 || ^8.0",
-        "friendsofphp/php-cs-fixer": "^3.92"
+        "vimeo/psalm": "^0.3.14"
     },
     "suggest": {
         "helios-ag/fm-elfinder-bundle": "Elfinder bundle, file manager",

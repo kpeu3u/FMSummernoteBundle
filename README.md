@@ -41,6 +41,7 @@ return [
 ## Configuration
 
 You can configure the bundle as follows, but note that the plugins "elfinder" and "video" are not supported in Jquery2.x.
+A sample configuration file can be found in `src/Resources/config/fm_summernote.yaml`.
 
 ```yaml
 fm_summernote:
@@ -49,10 +50,16 @@ fm_summernote:
         - elfinder # by default plugins not set, bundle comes with elfinder plugin / provides integration with FMElfinderBundle
     selector: .summernote #defines summernote selector for apply to
     toolbar: # define toolbars, if no toolbar configured, default toolbars defined
-        style: [style]
-        bold: [bold]
+        style:
+            style: [style]
+        font:
+            bold: [bold]
+            italic: [italic]
+            underline: [underline]
+            clear: [clear]
     extra_toolbar: # extra toolbar can be used for plugins toolbar and as additional toolbar setings, when 'toolbar' option is omitted
-        elfinder: [elfinder]
+        elfinder:
+            elfinder: [elfinder]
     width: 600
     height: 400
     language: '' # define language (with language culture code like de-DE, fr-FR, etc.) by default, it is in english

@@ -10,15 +10,9 @@ use Twig\TwigFunction;
 
 class FMSummernoteExtension extends AbstractExtension
 {
-    /**
-     * @var array
-     */
-    protected $parameters;
+    protected array $parameters;
 
-    /**
-     * @var Environment
-     */
-    protected $twig;
+    protected Environment $twig;
 
     public function __construct($parameters, Environment $twig)
     {
@@ -26,28 +20,22 @@ class FMSummernoteExtension extends AbstractExtension
         $this->twig = $twig;
     }
 
-    /**
-     * @return array
-     */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
-            new TwigFunction('summernote_init', [$this, 'summernoteInit'], ['is_safe' => ['html']]),
+            new TwigFunction('summernote_init', $this->summernoteInit(...), ['is_safe' => ['html']]),
         ];
     }
 
-    /**
-     * @return string
-     */
-    public function summernoteInit()
+    public function summernoteInit(): string
     {
         $template = $this->parameters['init_template'];
         $options = [];
 
         $options['fontname'] = \count($this->parameters['fontname']) > 0 ? $this->prepareArrayParameter('fontname') : $this->getDefaultFontname();
         $options['fontnocheck'] = \count($this->parameters['fontnocheck']) > 0 ? $this->prepareArrayParameter('fontnocheck') : null;
-        $options['language'] = isset($this->parameters['language']) ? $this->parameters['language'] : null;
-        $options['plugins'] = isset($this->parameters['plugins']) ? $this->parameters['plugins'] : null;
+        $options['language'] = $this->parameters['language'] ?? null;
+        $options['plugins'] = $this->parameters['plugins'] ?? null;
         $options['selector'] = $this->parameters['selector'];
         $options['width'] = $this->parameters['width'];
         $options['height'] = $this->parameters['height'];
@@ -68,10 +56,10 @@ class FMSummernoteExtension extends AbstractExtension
         return $this->twig->render($template, ['sn' => $options, 'base_path' => $base_path]);
     }
 
-    private function prepareToolbar()
+    private function prepareToolbar(): ?string
     {   // builds summernote toolbar array
         if (empty($this->parameters['toolbar']) && empty($this->parameters['extra_toolbar'])) {
-            return;
+            return null;
         }
 
         $str = '[';
@@ -91,12 +79,10 @@ class FMSummernoteExtension extends AbstractExtension
     /**
      * Return a javascript array.
      *
-     * @var string name
-     *             The name of the parameter to look for
-     *
-     * @return string
+     * @return string|null name
+     *                     The name of the parameter to look for
      */
-    private function prepareArrayParameter($name)
+    private function prepareArrayParameter(string $name): ?string
     {
         if (isset($this->parameters[$name])) {
             $parameterArray = $this->parameters[$name];
@@ -111,14 +97,14 @@ class FMSummernoteExtension extends AbstractExtension
 
             return $str;
         }
+
+        return null;
     }
 
     /**
      * Return [ $key, [data, data] ],.
-     *
-     * @return string
      */
-    private function processToolbar(array $toolbar)
+    private function processToolbar(array $toolbar): string
     {
         $str = '';
         foreach ($toolbar as $key => $tb) {
@@ -132,10 +118,8 @@ class FMSummernoteExtension extends AbstractExtension
 
     /**
      * return default toolbar when only extra_toolbar is defined.
-     *
-     * @return string
      */
-    private function getDefaultToolbar()
+    private function getDefaultToolbar(): string
     {
         return "['style', ['style']],
                 ['font', ['bold', 'italic', 'underline', 'clear']],
@@ -149,7 +133,7 @@ class FMSummernoteExtension extends AbstractExtension
                 ['help', ['help']],";
     }
 
-    public function getDefaultFontname()
+    public function getDefaultFontname(): string
     {
         return "['Arial', 'Courier New', 'Helvetica', 'Times New Roman']";
     }
@@ -159,7 +143,7 @@ class FMSummernoteExtension extends AbstractExtension
      *
      * @return string The extension name
      */
-    public function getName()
+    public function getName(): string
     {
         return 'fm_summernote';
     }

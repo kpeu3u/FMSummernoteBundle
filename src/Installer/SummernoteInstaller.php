@@ -21,9 +21,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class SummernoteInstaller
 {
-    public const CLEAR_DROP = 'drop';
+    public const string CLEAR_DROP = 'drop';
 
-    public const CLEAR_KEEP = 'keep';
+    public const string CLEAR_KEEP = 'keep';
 
     public const CLEAR_SKIP = 'skip';
 
@@ -55,10 +55,12 @@ class SummernoteInstaller
 
     public const NOTIFY_EXTRACT_SIZE = 'extract-size';
 
+    public const string VERSION_LATEST = 'v0.9.0';
+
     /**
      * @var string
      */
-    private static $archive = 'https://https://github.com/summernote/summernote/archive/%s.zip';
+    private static $archive = 'https://github.com/summernote/summernote/archive/%s.zip';
 
     /**
      * @var OptionsResolver
@@ -70,9 +72,10 @@ class SummernoteInstaller
      */
     public function __construct(array $options = [])
     {
-        $this->resolver = (new OptionsResolver())
+        $this->resolver = new OptionsResolver()
             ->setDefaults(array_merge([
                 'clear' => null,
+                'excludes' => [],
                 'notifier' => null,
                 'path' => \dirname(__DIR__).'/Resources/public',
                 'version' => self::VERSION_LATEST,
@@ -89,10 +92,8 @@ class SummernoteInstaller
 
     /**
      * @param mixed[] $options
-     *
-     * @return bool
      */
-    public function install(array $options = [])
+    public function install(array $options = []): bool
     {
         $options = $this->resolver->resolve($options);
 
@@ -298,12 +299,7 @@ class SummernoteInstaller
         }
     }
 
-    /**
-     * @param string $message
-     *
-     * @return \RuntimeException
-     */
-    private function createException($message)
+    private function createException(string $message): \RuntimeException
     {
         $error = error_get_last();
 
