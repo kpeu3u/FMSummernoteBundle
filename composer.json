@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "php": "^8.4 || ^8.2 || ^8.1",
+        "php": "^8.4",
         "ext-json": "*",
         "symfony/config": "^6.4 || ^7.0 || ^8.0",
         "symfony/dependency-injection": "^6.4 || ^7.0 || ^8.0",
@@ -76,7 +76,7 @@
         "test:coverage": "XDEBUG_MODE=coverage phpunit --coverage-html=var/coverage",
         "phpstan": "phpstan analyse",
         "psalm": "psalm",
-        "cs-check": "php-cs-fixer fix --dry-run --diff",
-        "cs-fix": "php-cs-fixer fix"
+        "cs-check": "php-cs-fixer fix --dry-run --diff --ansi --using-cache=no",
+        "cs-fix": "php-cs-fixer fix --verbose --ansi --using-cache=no"
     }
 }

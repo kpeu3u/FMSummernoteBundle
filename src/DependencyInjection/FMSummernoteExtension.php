@@ -28,6 +28,6 @@ class FMSummernoteExtension extends Extension
 
     public function getNamespace(): string
     {
-        return 'http://helios-ag.github.io/schema/dic/fm_summernote';
+        return 'https://helios-ag.github.io/schema/dic/fm_summernote';
     }
 }
