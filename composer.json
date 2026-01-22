@@ -36,7 +36,8 @@
         "rector/rector": "^2.3",
         "symfony/phpunit-bridge": "^8.0",
         "vimeo/psalm": "^0.3.14",
-        "symfony/var-dumper": "^6.4 || ^7.0 || ^8.0"
+        "symfony/var-dumper": "^6.4 || ^7.0 || ^8.0",
+        "friendsofphp/php-cs-fixer": "^3.92"
     },
     "suggest": {
         "helios-ag/fm-elfinder-bundle": "Elfinder bundle, file manager",

@@ -20,13 +20,10 @@ class FMSummernoteExtension extends AbstractExtension
      */
     protected $twig;
 
-    /**
-     * @param $parameters
-     */
     public function __construct($parameters, Environment $twig)
     {
         $this->parameters = $parameters;
-        $this->twig       = $twig;
+        $this->twig = $twig;
     }
 
     /**
@@ -45,26 +42,26 @@ class FMSummernoteExtension extends AbstractExtension
     public function summernoteInit()
     {
         $template = $this->parameters['init_template'];
-        $options  = [];
+        $options = [];
 
-        $options['fontname']            = count($this->parameters['fontname']) > 0 ? $this->prepareArrayParameter('fontname') : $this->getDefaultFontname();
-        $options['fontnocheck']         = count($this->parameters['fontnocheck']) > 0 ? $this->prepareArrayParameter('fontnocheck') : null;
-        $options['language']            = isset($this->parameters['language']) ? $this->parameters['language'] : null;
-        $options['plugins']             = isset($this->parameters['plugins']) ? $this->parameters['plugins'] : null;
-        $options['selector']            = $this->parameters['selector'];
-        $options['width']               = $this->parameters['width'];
-        $options['height']              = $this->parameters['height'];
-        $options['include_jquery']      = $this->parameters['include_jquery'];
-        $options['include_bootstrap']   = $this->parameters['include_bootstrap'];
+        $options['fontname'] = \count($this->parameters['fontname']) > 0 ? $this->prepareArrayParameter('fontname') : $this->getDefaultFontname();
+        $options['fontnocheck'] = \count($this->parameters['fontnocheck']) > 0 ? $this->prepareArrayParameter('fontnocheck') : null;
+        $options['language'] = isset($this->parameters['language']) ? $this->parameters['language'] : null;
+        $options['plugins'] = isset($this->parameters['plugins']) ? $this->parameters['plugins'] : null;
+        $options['selector'] = $this->parameters['selector'];
+        $options['width'] = $this->parameters['width'];
+        $options['height'] = $this->parameters['height'];
+        $options['include_jquery'] = $this->parameters['include_jquery'];
+        $options['include_bootstrap'] = $this->parameters['include_bootstrap'];
         $options['include_fontawesome'] = $this->parameters['include_fontawesome'];
-        $options['fontawesome_path']    = $this->parameters['fontawesome_path'];
-        $options['bootstrap_css_path']  = $this->parameters['bootstrap_css_path'];
-        $options['bootstrap_js_path']   = $this->parameters['bootstrap_js_path'];
-        $options['jquery_path']         = $this->parameters['jquery_path'];
+        $options['fontawesome_path'] = $this->parameters['fontawesome_path'];
+        $options['bootstrap_css_path'] = $this->parameters['bootstrap_css_path'];
+        $options['bootstrap_js_path'] = $this->parameters['bootstrap_js_path'];
+        $options['jquery_path'] = $this->parameters['jquery_path'];
         $options['summernote_css_path'] = $this->parameters['summernote_css_path'];
-        $options['summernote_js_path']  = $this->parameters['summernote_js_path'];
-        $options['jquery_version']      = $this->parameters['jquery_version'];
-        $options['toolbar']             = $this->prepareToolbar();
+        $options['summernote_js_path'] = $this->parameters['summernote_js_path'];
+        $options['jquery_version'] = $this->parameters['jquery_version'];
+        $options['toolbar'] = $this->prepareToolbar();
 
         $base_path = (!isset($this->parameters['base_path']) ? 'bundles/fmsummernote/Jquery'.$options['jquery_version'].'.x/' : $this->parameters['base_path']);
 
@@ -77,7 +74,7 @@ class FMSummernoteExtension extends AbstractExtension
             return;
         }
 
-        $str     = '[';
+        $str = '[';
         $toolbar = $this->parameters['toolbar'];
         $str .= $this->processToolbar($toolbar);
         if (!empty($this->parameters['extra_toolbar'])) {
@@ -103,8 +100,8 @@ class FMSummernoteExtension extends AbstractExtension
     {
         if (isset($this->parameters[$name])) {
             $parameterArray = $this->parameters[$name];
-            $count          = count($parameterArray);
-            $str            = "['".$parameterArray[0]."'";
+            $count = \count($parameterArray);
+            $str = "['".$parameterArray[0]."'";
 
             for ($i = 1; $i < $count; ++$i) {
                 $str .= ", '".$parameterArray[$i]."'";
@@ -125,7 +122,7 @@ class FMSummernoteExtension extends AbstractExtension
     {
         $str = '';
         foreach ($toolbar as $key => $tb) {
-            $str .= sprintf("[ '%s', ", $key);
+            $str .= \sprintf("[ '%s', ", $key);
             $str .= json_encode($tb);
             $str .= '], ';
         }

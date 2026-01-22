@@ -6,9 +6,9 @@ namespace FM\SummernoteBundle\Tests\DependencyInjection;
 
 use FM\SummernoteBundle\DependencyInjection\FMSummernoteExtension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Yaml\Parser;
-use PHPUnit\Framework\Attributes\Test;
 
 class FMSummernoteExtensionTest extends AbstractExtensionTestCase
 {
