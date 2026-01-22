@@ -40,3 +40,7 @@ composer.lock
 var
 .phpunit.cache
 .phpunit.result.cache
+
+# IDEs and editors
+/.idea/
+.DS_Store
