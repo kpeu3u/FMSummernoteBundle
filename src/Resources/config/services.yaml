@@ -1,0 +1,14 @@
+services:
+
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true
+
+    twig.extension.fm_summernote:
+        class: FM\SummernoteBundle\Twig\Extension\FMSummernoteExtension
+        public: false
+        arguments:
+            - '%fm_summernote%'
+            - '@twig'
+        tags:
+            - { name: twig.extension }
